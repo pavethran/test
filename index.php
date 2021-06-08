@@ -3,7 +3,7 @@
 <head>
 <title> LOGIN </title>
 <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+
 <body>
 
 <form action="login.php"method = "post">
@@ -17,5 +17,6 @@
 <input type="password"name="password" placeholder="Password"><br>
 <button type="submit">Login</button>
 </form>
+</head>
 </body>
 </html>
