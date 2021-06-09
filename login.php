@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db_conn.php';
-if(isset($_POST['email']) && isset($_POST['password'])){
+if(isset($_POST['Email']) && isset($_POST['Password'])){
     function validata($data){
         $data = trim($data);
         $data = stripslashes($data);
@@ -10,29 +10,28 @@ if(isset($_POST['email']) && isset($_POST['password'])){
     
     }
 }
-
-$email = validata($_POST['email']);
-$pass = validata($_POST['password']);
+$email = validata($_POST["Email"]);
+$password = validata($_POST['Password']);
 
 if(empty($email)){
     header ("Location: index.php?error=Email is required");
     exit();
 }
-elseif(empty($pass)){
+elseif(empty($password)){
     header ("Location:index.php?error=Password is required");
     exit();
 }
 
-$sql = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
+$sql = "SELECT * FROM user_registration WHERE email='$email' AND password='$password'";
 
 $result = mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result)=== 1) {
     $row = mysqli_fetch_assoc($result);
-    if($row['email'] === $email && $row['password'] === $pass){
+    if($row['Email'] === $email && $row['Password'] === $password){
         echo 'Logged In';
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['name'] = $row['name'];
+        $_SESSION['email'] = $row['Email'];
+        
         $_SESSION['id'] = $row['id'];
         header("location: home.php");
         exit();
